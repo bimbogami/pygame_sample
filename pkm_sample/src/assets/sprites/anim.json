@@ -1,0 +1,16 @@
+{
+    "frames": {
+        "rayquaza": {
+            "idle": [
+                "idle_front_01",
+                "idle_front_02",
+                "idle_front_03"
+            ],
+            "attack": [
+                "attack_strike_01",
+                "attack_strike_02",
+                "attack_recoil_01"
+            ]
+        }
+    }
+}

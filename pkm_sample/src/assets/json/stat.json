@@ -1,0 +1,91 @@
+{
+    "game_version": "Pokémon Omega Ruby",
+    "generation": 6,
+    "pokemon_stats": [
+        {
+            "id": 254,
+            "name": "Mega Sceptile",
+            "type": [
+                "Grass",
+                "Dragon"
+            ],
+            "base_stats": {
+                "hp": 70,
+                "attack": 110,
+                "defense": 75,
+                "special_attack": 145,
+                "special_defense": 85,
+                "speed": 145
+            },
+            "ability": "Lightning Rod"
+        },
+        {
+            "id": 257,
+            "name": "Mega Blaziken",
+            "type": [
+                "Fire",
+                "Fighting"
+            ],
+            "base_stats": {
+                "hp": 80,
+                "attack": 160,
+                "defense": 80,
+                "special_attack": 130,
+                "special_defense": 80,
+                "speed": 100
+            },
+            "ability": "Speed Boost"
+        },
+        {
+            "id": 260,
+            "name": "Mega Swampert",
+            "type": [
+                "Water",
+                "Ground"
+            ],
+            "base_stats": {
+                "hp": 100,
+                "attack": 150,
+                "defense": 110,
+                "special_attack": 85,
+                "special_defense": 110,
+                "speed": 70
+            },
+            "ability": "Swift Swim"
+        },
+        {
+            "id": 383,
+            "name": "Primal Groudon",
+            "type": [
+                "Ground",
+                "Fire"
+            ],
+            "base_stats": {
+                "hp": 100,
+                "attack": 180,
+                "defense": 160,
+                "special_attack": 150,
+                "special_defense": 90,
+                "speed": 90
+            },
+            "ability": "Desolate Land"
+        },
+        {
+            "id": 384,
+            "name": "Mega Rayquaza",
+            "type": [
+                "Dragon",
+                "Flying"
+            ],
+            "base_stats": {
+                "hp": 105,
+                "attack": 180,
+                "defense": 100,
+                "special_attack": 180,
+                "special_defense": 100,
+                "speed": 115
+            },
+            "ability": "Delta Stream"
+        }
+    ]
+}
