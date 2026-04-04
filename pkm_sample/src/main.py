@@ -1,39 +1,34 @@
 import pygame
-from gui.battle_ui import BattleUI
-from assets.animation import pkmn_anim 
+from battle_ui import BattleUI
 from animation_func import SimpleAnimator, OverlayAnimator 
 #from assets.animation import brendanbat
 
 pygame.init()
 
-# Screen dimensions
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-# Colors
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 
-# Create the screen
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("Pokemon_sample")
 
-# Create animation object ONCE before the loop
 rayquaza = SimpleAnimator("rayquaza")
+sceptile = SimpleAnimator("sceptile")
 overlay = OverlayAnimator(screen)
 #brendan = brendanbat()
 
 clock = pygame.time.Clock()
-start_time = pygame.time.get_ticks()  # Record when the game starts
-has_played_intro = False  # Track if the intro "act" has been triggered
+start_time = pygame.time.get_ticks()  
+enemy_intro_played = False  
+player_intro_played = False
 
-# Game loop
 running = True
 while running:
-    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -50,31 +45,36 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 rayquaza.set_state("act")
+                sceptile.set_state("act")
 
-    # Trigger "act" animation 10ms after appearing on screen
-    if not has_played_intro and pygame.time.get_ticks() - start_time >= 20:
-        pygame.time.delay(1000)
-        enemy_x =+ 100
-        enemy_y =+ 100
+    current_time = pygame.time.get_ticks()
+    if not enemy_intro_played and current_time - start_time >= 1000:
         rayquaza.set_state("act")
-        
-        has_played_intro = True
+        enemy_intro_played = True
 
-    # Drawing
-    screen.fill(WHITE)  # Fill the screen with white
-    BattleUI(screen).draw()
-    enemy_x = SCREEN_WIDTH - 400
-    enemy_y = SCREEN_HEIGHT - 400
-    cur_img, cur_x, cur_y = rayquaza.animate(screen, enemy_x, enemy_y)
+    if not player_intro_played and current_time - start_time >= 2500:
+        sceptile.set_state("act")
+        player_intro_played = True
+
+    screen.blit(pygame.transform.scale(pygame.image.load("src/assets/sprites/battle_ui/arena/00.png"), (SCREEN_WIDTH, SCREEN_HEIGHT - 190)), (0,0))  # Fill the screen with white
     
-    # Draw stat change overlay precisely cut to the sprite's silhouette
-    if cur_img:
-        overlay.draw(screen, cur_img, cur_x, cur_y)
+    enemy_x = SCREEN_WIDTH - 410
+    enemy_y = SCREEN_HEIGHT - 620
 
-    # Update the display
+    playermon_x = SCREEN_WIDTH - 570
+    playermon_y = SCREEN_HEIGHT - 350
+    playermon, cur_x, cur_y = sceptile.animate(screen, playermon_x, playermon_y)
+    enemymon, cur_x2, cur_y2 = rayquaza.animate(screen, enemy_x, enemy_y)
+
+    if playermon:
+        overlay.draw(screen, playermon, cur_x, cur_y)
+    if enemymon:
+        overlay.draw(screen, enemymon, cur_x2, cur_y2)
+
+    BattleUI(screen).draw()
+
 
     pygame.display.flip()
     clock.tick(14)  
 
-# Quit Pygame
 pygame.quit()
