@@ -91,11 +91,14 @@ class SimpleAnimator:
             self.state = state
             self.value = 0
 
+    def stats_change(self, stat_update):
+        self.stat_update_state = stat_update
+        self.stat_anim_start_time = pygame.time.get_ticks()
+
 
 class OverlayAnimator:
     def __init__(self, screen=None):
-        self.stat_update_state = None
-        self.stat_anim_start_time = 0
+        self.active_animations = {}
         self.duration = 1500 
         
         self.img_up = None
@@ -109,26 +112,30 @@ class OverlayAnimator:
         except Exception:
             pass
 
-    def stats_change(self, stat_update):
-        self.stat_update_state = stat_update
-        self.stat_anim_start_time = pygame.time.get_ticks()
+    def stats_change(self, target_id, stat_update):
+        self.active_animations[target_id] = {
+            "state": stat_update,
+            "start_time": pygame.time.get_ticks()
+        }
 
-    def draw(self, screen, target_image, draw_x, draw_y):
-        if not self.stat_update_state or not target_image:
+    def draw(self, target_id, screen, target_image, draw_x, draw_y):
+        anim = self.active_animations.get(target_id)
+        if not anim or not target_image:
             return
 
         t = pygame.time.get_ticks()
-        elapsed = t - self.stat_anim_start_time
+        elapsed = t - anim["start_time"]
         if elapsed > self.duration:
-            self.stat_update_state = None
+            del self.active_animations[target_id]
             return
 
         progress = elapsed / self.duration
         
         alpha = int(200 * math.sin(progress * math.pi))
 
-        overlay_img = self.img_up if self.stat_update_state == "UP" else self.img_down
-        direction = -1 if self.stat_update_state == "UP" else 1
+        state = anim["state"]
+        overlay_img = self.img_up if state == "UP" else self.img_down
+        direction = -1 if state == "UP" else 1
 
         width = target_image.get_width()
         height = target_image.get_height()

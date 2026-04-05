@@ -1,89 +1,259 @@
 {
-    "game_version": "Pokémon Omega Ruby",
-    "moves": {
-        "Dragon Ascent": {
-            "type": "Flying",
+    "pokemon_movesets": {
+        "Sceptile": [
+            "Leaf Blade",
+            "Giga Drain",
+            "Swords Dance",
+            "Quick Attack"
+        ],
+        "Grimmsnarl": [
+            "Spirit Break",
+            "Dark Pulse",
+            "Thunder Wave",
+            "Reflect"
+        ],
+        "Mamoswine": [
+            "Earthquake",
+            "Icicle Crash",
+            "Ice Shard",
+            "Superpower"
+        ],
+        "Rayquaza": [
+            "Dragon Ascent",
+            "Dragon Dance",
+            "Extreme Speed",
+            "Outrage"
+        ]
+    },
+    "move_database": {
+        "Leaf Blade": {
+            "type": "Grass",
             "category": "Physical",
-            "power": 120,
+            "power": 90,
             "accuracy": 100,
-            "effect": "Lowers user's Defense and Special Defense by 1 stage."
+            "pp": 15,
+            "priority": 0,
+            "effects": {
+                "description": "Deals damage with a higher chance of a critical hit.",
+                "target": "enemy",
+                "increased_critical_hit_ratio": 1
+            }
         },
-        "Precipice Blades": {
-            "type": "Ground",
-            "category": "Physical",
-            "power": 120,
-            "accuracy": 85,
-            "effect": "Hits all adjacent opponents. No stat changes."
-        },
-        "Leaf Storm": {
+        "Giga Drain": {
             "type": "Grass",
             "category": "Special",
-            "power": 130,
-            "accuracy": 90,
-            "effect": "Harshly lowers user's Special Attack by 2 stages."
-        },
-        "High Jump Kick": {
-            "type": "Fighting",
-            "category": "Physical",
-            "power": 130,
-            "accuracy": 90,
-            "effect": "If it misses, the user takes crash damage equal to 50% of their max HP."
-        },
-        "Hammer Arm": {
-            "type": "Fighting",
-            "category": "Physical",
-            "power": 100,
-            "accuracy": 90,
-            "effect": "Lowers the user's Speed by 1 stage."
-        },
-        "Flare Blitz": {
-            "type": "Fire",
-            "category": "Physical",
-            "power": 120,
+            "power": 75,
             "accuracy": 100,
-            "effect": "User takes 33% recoil damage. Has a 10% chance to burn the target."
-        },
-        "Dragon Dance": {
-            "type": "Dragon",
-            "category": "Status",
-            "power": null,
-            "accuracy": null,
-            "effect": "Raises user's Attack and Speed by 1 stage."
+            "pp": 10,
+            "priority": 0,
+            "effects": {
+                "description": "Heals the user for 50% of the damage dealt to the target.",
+                "target": "enemy",
+                "healing_percentage": 50,
+                "heal_target": "self"
+            }
         },
         "Swords Dance": {
             "type": "Normal",
             "category": "Status",
             "power": null,
             "accuracy": null,
-            "effect": "Sharply raises user's Attack by 2 stages."
+            "pp": 20,
+            "priority": 0,
+            "effects": {
+                "description": "Sharply raises the user's Attack stat.",
+                "target": "self",
+                "stat_changes": {
+                    "attack": 2
+                }
+            }
+        },
+        "Quick Attack": {
+            "type": "Normal",
+            "category": "Physical",
+            "power": 40,
+            "accuracy": 100,
+            "pp": 30,
+            "priority": 1,
+            "effects": {
+                "description": "Deals damage and strikes first.",
+                "target": "enemy"
+            }
+        },
+        "Spirit Break": {
+            "type": "Fairy",
+            "category": "Physical",
+            "power": 75,
+            "accuracy": 100,
+            "pp": 15,
+            "priority": 0,
+            "effects": {
+                "description": "Deals damage and lowers the target's Special Attack.",
+                "target": "enemy",
+                "stat_changes": {
+                    "special_attack": -1
+                },
+                "effect_chance": 100
+            }
+        },
+        "Dark Pulse": {
+            "type": "Dark",
+            "category": "Special",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 15,
+            "priority": 0,
+            "effects": {
+                "description": "Deals damage and has a 20% chance to make the target flinch.",
+                "target": "enemy",
+                "status_condition": "flinch",
+                "effect_chance": 20
+            }
+        },
+        "Thunder Wave": {
+            "type": "Electric",
+            "category": "Status",
+            "power": null,
+            "accuracy": 90,
+            "pp": 20,
+            "priority": 0,
+            "effects": {
+                "description": "Paralyzes the target.",
+                "target": "enemy",
+                "status_condition": "paralysis",
+                "effect_chance": 100
+            }
+        },
+        "Reflect": {
+            "type": "Psychic",
+            "category": "Status",
+            "power": null,
+            "accuracy": null,
+            "pp": 20,
+            "priority": 0,
+            "effects": {
+                "description": "Reduces physical damage taken by the user's team for 5 turns.",
+                "target": "team_field",
+                "field_effect": "reduce_physical_damage",
+                "duration_turns": 5
+            }
+        },
+        "Earthquake": {
+            "type": "Ground",
+            "category": "Physical",
+            "power": 100,
+            "accuracy": 100,
+            "pp": 10,
+            "priority": 0,
+            "effects": {
+                "description": "Deals massive damage to all adjacent Pokemon.",
+                "target": "all_adjacent"
+            }
+        },
+        "Icicle Crash": {
+            "type": "Ice",
+            "category": "Physical",
+            "power": 85,
+            "accuracy": 90,
+            "pp": 10,
+            "priority": 0,
+            "effects": {
+                "description": "Deals damage and has a 30% chance to make the target flinch.",
+                "target": "enemy",
+                "status_condition": "flinch",
+                "effect_chance": 30
+            }
+        },
+        "Ice Shard": {
+            "type": "Ice",
+            "category": "Physical",
+            "power": 40,
+            "accuracy": 100,
+            "pp": 30,
+            "priority": 1,
+            "effects": {
+                "description": "Deals damage and strikes first.",
+                "target": "enemy"
+            }
         },
         "Superpower": {
             "type": "Fighting",
             "category": "Physical",
             "power": 120,
             "accuracy": 100,
-            "effect": "Lowers user's Attack and Defense by 1 stage."
+            "pp": 5,
+            "priority": 0,
+            "effects": {
+                "description": "Deals massive damage but lowers the user's Attack and Defense.",
+                "target": "enemy",
+                "self_stat_changes": {
+                    "attack": -1,
+                    "defense": -1
+                },
+                "effect_chance": 100
+            }
         },
-        "Overheat": {
-            "type": "Fire",
-            "category": "Special",
-            "power": 130,
-            "accuracy": 90,
-            "effect": "Harshly lowers user's Special Attack by 2 stages."
-        },
-        "Ancient Power": {
-            "type": "Rock",
-            "category": "Special",
-            "power": 60,
-            "accuracy": 100,
-            "effect": "10% chance to raise all of the user's stats by 1 stage."
-        },
-        "Knock Off": {
-            "type": "Dark",
+        "Dragon Ascent": {
+            "type": "Flying",
             "category": "Physical",
-            "power": 65,
+            "power": 120,
             "accuracy": 100,
-            "effect": "Inflicts 50% more damage if the target is holding an item and removes it."
+            "pp": 5,
+            "priority": 0,
+            "effects": {
+                "description": "Deals massive damage but lowers the user's Defense and Special Defense.",
+                "target": "enemy",
+                "self_stat_changes": {
+                    "defense": -1,
+                    "special_defense": -1
+                },
+                "effect_chance": 100
+            }
+        },
+        "Dragon Dance": {
+            "type": "Dragon",
+            "category": "Status",
+            "power": null,
+            "accuracy": null,
+            "pp": 20,
+            "priority": 0,
+            "effects": {
+                "description": "Raises the user's Attack and Speed stats.",
+                "target": "self",
+                "stat_changes": {
+                    "attack": 1,
+                    "speed": 1
+                }
+            }
+        },
+        "Extreme Speed": {
+            "type": "Normal",
+            "category": "Physical",
+            "power": 80,
+            "accuracy": 100,
+            "pp": 5,
+            "priority": 2,
+            "effects": {
+                "description": "Deals damage and strikes with extreme priority.",
+                "target": "enemy"
+            }
+        },
+        "Outrage": {
+            "type": "Dragon",
+            "category": "Physical",
+            "power": 120,
+            "accuracy": 100,
+            "pp": 10,
+            "priority": 0,
+            "effects": {
+                "description": "The user thrashes for 2-3 turns, then becomes confused.",
+                "target": "enemy",
+                "lock_in_moves": {
+                    "min_turns": 2,
+                    "max_turns": 3,
+                    "end_effect": "confuse_self"
+                }
+            }
         }
     }
 }
