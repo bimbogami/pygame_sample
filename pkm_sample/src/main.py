@@ -90,8 +90,9 @@ while running:
                     print("Item is Pressed")
                 elif label == "Run":
                     print("Run is Pressed")
-        #if event.type == attack:
-          #rayquaza.set_state("act")
+                    running = False
+
+
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:

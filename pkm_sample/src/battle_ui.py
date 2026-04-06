@@ -271,7 +271,7 @@ class BattleUI:
         label = short_names.get(stat, stat[:3].upper())
         
         # Draw label
-        label_surf = self.hp_font.render(label, True, (255, 255, 255))
+        label_surf = self.hp_font.render(label, True, (0, 0, 0))
         self.screen.blit(label_surf, (x, y))
         
         # Draw battery frame
