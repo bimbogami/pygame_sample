@@ -4,6 +4,7 @@ from animation_func import SimpleAnimator, OverlayAnimator
 #from assets.animation import brendanbat
 
 pygame.init()
+pygame.mixer.init()
 
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
@@ -34,9 +35,13 @@ player_intro_played = False
 message_timer = 0
 message_duration = 2000
 
+pygame.mixer.music.load("src/assets/sounds/Double_battle.mp3")
+pygame.mixer.music.play(-1)
+
 running = True
 while running:
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT:
             running = False
 
@@ -120,10 +125,12 @@ while running:
 
     if not enemy_intro_played and current_time - start_time >= 1000:
         rayquaza.set_state("act")
+        pygame.mixer.Sound("src/assets/sounds/pokemon_sounds/rayquaza.ogg").play()
         enemy_intro_played = True
 
     if not player_intro_played and current_time - start_time >= 2500:
         sceptile.set_state("act")
+        pygame.mixer.Sound("src/assets/sounds/pokemon_sounds/sceptile.ogg").play()
         player_intro_played = True
 
     screen.blit(pygame.transform.scale(pygame.image.load("src/assets/sprites/battle_ui/arena/00.png"), (SCREEN_WIDTH, SCREEN_HEIGHT - 190)), (0,0))  # Fill the screen with white
