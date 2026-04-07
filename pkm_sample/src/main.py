@@ -3,6 +3,8 @@ from battle_ui import BattleUI
 from animation_func import SimpleAnimator, OverlayAnimator 
 #from assets.animation import brendanbat
 
+#dagdag
+
 pygame.init()
 pygame.mixer.init()
 
