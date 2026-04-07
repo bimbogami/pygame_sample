@@ -168,3 +168,9 @@ class OverlayAnimator:
         mask_surf.blit(overlay_surf, (0, 0), special_flags=pygame.BLEND_RGBA_MULT)
 
         screen.blit(mask_surf, (draw_x, draw_y))
+    
+    def attack_animation(self, target_id, attack_name):
+        self.active_animations[target_id] = {
+            "state": attack_name,
+            "start_time": pygame.time.get_ticks()
+        }
