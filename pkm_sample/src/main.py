@@ -38,8 +38,8 @@ message_timer = 0
 message_duration = 2000
 
 bgmusic = pygame.mixer.music.load("src/assets/sounds/battle!.mp3")
-pygame.mixer.music.set_volume(0.4)
 pygame.mixer.music.play(-1)
+pygame.mixer.music.set_volume(0.2)
 
 running = True
 while running:
@@ -74,12 +74,20 @@ while running:
                     for val in stat_changes.values():
                         if val > 0:
                             overlay.stats_change(ttarget, "UP")
-                            if ttarget == "player": sceptile.stats_change("UP")
-                            else: rayquaza.stats_change("UP")
+                            if ttarget == "player": 
+                                sceptile.stats_change("UP")
+                                pygame.mixer.Sound("src/assets/sounds/atk_sounds/stat_up.mp3").play()
+                            else: 
+                                rayquaza.stats_change("UP")
+                                pygame.mixer.Sound("src/assets/sounds/atk_sounds/stat_up.mp3").play()
                         elif val < 0:
                             overlay.stats_change(ttarget, "DOWN")
-                            if ttarget == "player": sceptile.stats_change("DOWN")
-                            else: rayquaza.stats_change("DOWN")
+                            if ttarget == "player": 
+                                sceptile.stats_change("DOWN")
+                                pygame.mixer.Sound("src/assets/sounds/atk_sounds/stat_down.mp3").play()
+                            else: 
+                                rayquaza.stats_change("DOWN")
+                                pygame.mixer.Sound("src/assets/sounds/atk_sounds/stat_down.mp3").play()
                             
                 # Apply self stat changes
                 if self_changes:
@@ -104,6 +112,7 @@ while running:
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP:
+
                 overlay.stats_change("player", "UP")
                 overlay.stats_change("enemy", "UP")
                 sceptile.stats_change("UP")
