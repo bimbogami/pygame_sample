@@ -37,7 +37,8 @@ player_intro_played = False
 message_timer = 0
 message_duration = 2000
 
-bgmusic = pygame.mixer.music.load("src/assets/sounds/Double_battle.mp3")
+bgmusic = pygame.mixer.music.load("src/assets/sounds/battle!.mp3")
+pygame.mixer.music.set_volume(0.4)
 pygame.mixer.music.play(-1)
 
 running = True
