@@ -373,7 +373,7 @@ class BattleUI:
             else:
                 self._draw_text_wrapped("Choose a move.", text_x, text_y + 20, text_w, self.name_font)
         else:
-            self._draw_text_wrapped(f"What will {self.player_pokemon} do?", text_x, text_y, text_w, self.font)
+            self._draw_text_wrapped(f"What will  YOUR {self.player_pokemon} do?", text_x, text_y, text_w, self.font)
 
     def get_moves(self):
         """Get the move names for the current player pokemon."""
