@@ -38,7 +38,7 @@ class BattleUI:
         self.custom_message = None
         pygame.font.init()
         self.font = pygame.font.Font(font_path, 40)
-        self.small_font = pygame.font.Font(font_path, 24)
+        self.small_font = pygame.font.Font(font_path, 28)
         self.hp_font = pygame.font.Font(font_path, 20)
         self.name_font = pygame.font.Font(font_path, 28)
 
@@ -57,6 +57,12 @@ class BattleUI:
         # Stat stage tracking
         self.player_stat_stages = {}
         self.enemy_stat_stages = {}
+
+        # Initialize PP tracking
+        self.current_pp = {}
+        for move_name in self.get_moves():
+            details = self.get_move_details(move_name)
+            self.current_pp[move_name] = details.get("pp", 0)
 
         # Main menu buttons
         self.main_labels = ["Fight", "Pokémon", "Item", "Run"]
@@ -263,6 +269,10 @@ class BattleUI:
             current = target_dict.get(stat, 0)
             target_dict[stat] = max(-6, min(6, current + stage))
 
+    def reduce_pp(self, move_name, amount=1):
+        if move_name in self.current_pp:
+            self.current_pp[move_name] = max(0, self.current_pp[move_name] - amount)
+
     def _draw_single_battery(self, x, y, stat, val):
         short_names = {
             "attack": "ATK", "defense": "DEF", 
@@ -346,13 +356,17 @@ class BattleUI:
                 # Show move name on top, type info below
                 details = self.get_move_details(label)
                 mtype = details.get("type", "")
-
+                max_pp = details.get("pp", 0)
+                curr_pp = self.current_pp.get(label, max_pp)
 
                 name_surf = self.small_font.render(label, True, text_color)
-
                 name_rect = name_surf.get_rect(centerx=rect.centerx, centery=rect.centery - 12)
-
                 self.screen.blit(name_surf, name_rect)
+                
+                pp_text = f"PP {curr_pp}/{max_pp}"
+                pp_surf = self.hp_font.render(pp_text, True, text_color)
+                pp_rect = pp_surf.get_rect(centerx=rect.centerx, centery=rect.centery + 15)
+                self.screen.blit(pp_surf, pp_rect)
             else:
                 text_surf = self.font.render(label, True, text_color)
                 text_rect = text_surf.get_rect(center=rect.center)

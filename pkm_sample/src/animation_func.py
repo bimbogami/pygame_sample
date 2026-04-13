@@ -3,8 +3,9 @@ import os
 import re
 import math
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+attack = pygame.image.load("src/assets/sprites/atk.png")
 class SimpleAnimator:
     def __init__(self, pkmn_name, scale_factor=2.8):
         self.pokemon = pkmn_name
@@ -63,9 +64,11 @@ class SimpleAnimator:
             t = pygame.time.get_ticks()
             if t - self.stat_anim_start_time < 1500:
                 if self.stat_update_state == "UP":
-                    bobbing_offset = math.sin(t * 0.015) * 10
+                    #bobbing_offset = math.sin(t * 0.015) * 10
+                    pass
                 elif self.stat_update_state == "DOWN":
-                    bobbing_offset = -math.sin(t * 0.015) * 10
+                    #bobbing_offset = -math.sin(t * 0.015) * 10
+                    pass
             else:
                 self.stat_update_state = None
 
@@ -169,5 +172,7 @@ class OverlayAnimator:
 
         screen.blit(mask_surf, (draw_x, draw_y))
     
-    def attack_animation(self, pokemon_attacked , attack_name):
-        pass
+    def attack_animation(self, pokemon_attacked , label):
+        if label == "Leaf Blade":
+            pass
+        #self.blit()

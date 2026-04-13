@@ -54,7 +54,13 @@ while running:
         if choice and not battle_ui.custom_message:
             mode, label = choice
             if mode == "fight":
-                # Start the attack sequence
+                if battle_ui.current_pp.get(label, 0) <= 0:
+                    battle_ui.set_message("There's no PP left for this move!")
+                    message_timer = pygame.time.get_ticks()
+                    continue
+
+                # Decrease PP and start the attack sequence
+                battle_ui.reduce_pp(label)
                 battle_ui.set_message(f"{PLAYER_POKEMON} used {label}!")
                 sceptile.set_state("act")
                 message_timer = pygame.time.get_ticks()

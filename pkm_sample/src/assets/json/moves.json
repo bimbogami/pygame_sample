@@ -6,11 +6,11 @@
             "Swords Dance",
             "Quick Attack"
         ],
-        "Grimmsnarl": [
-            "Spirit Break",
-            "Dark Pulse",
-            "Thunder Wave",
-            "Reflect"
+        "Espeon": [
+            "Light Screen",
+            "Reflect",
+            "Baton Pass",
+            "Psychic"
         ],
         "Mamoswine": [
             "Earthquake",
@@ -253,6 +253,50 @@
                     "max_turns": 3,
                     "end_effect": "confuse_self"
                 }
+            }
+        },
+        "Light Screen": {
+            "type": "Psychic",
+            "category": "Status",
+            "power": null,
+            "accuracy": null,
+            "pp": 30,
+            "priority": 0,
+            "effects": {
+                "description": "Reduces special damage taken by the user's team for 5 turns.",
+                "target": "team_field",
+                "field_effect": "reduce_special_damage",
+                "duration_turns": 5
+            }
+        },
+        "Baton Pass": {
+            "type": "Normal",
+            "category": "Status",
+            "power": null,
+            "accuracy": null,
+            "pp": 40,
+            "priority": 0,
+            "effects": {
+                "description": "The user switches places with a party Pokemon in waiting, passing along any stat changes.",
+                "target": "self",
+                "switch_out": true,
+                "pass_stats": true
+            }
+        },
+        "Psychic": {
+            "type": "Psychic",
+            "category": "Special",
+            "power": 90,
+            "accuracy": 100,
+            "pp": 10,
+            "priority": 0,
+            "effects": {
+                "description": "Deals damage and has a 10% chance to lower the target's Special Defense.",
+                "target": "enemy",
+                "stat_changes": {
+                    "special_defense": -1
+                },
+                "effect_chance": 10
             }
         }
     }
