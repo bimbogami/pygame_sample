@@ -54,6 +54,7 @@ while running:
         if choice and not battle_ui.custom_message:
             mode, label = choice
             if mode == "fight":
+                # Check PP first
                 if battle_ui.current_pp.get(label, 0) <= 0:
                     battle_ui.set_message("There's no PP left for this move!")
                     message_timer = pygame.time.get_ticks()
